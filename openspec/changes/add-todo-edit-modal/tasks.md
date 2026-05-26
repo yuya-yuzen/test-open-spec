@@ -17,3 +17,9 @@
 ## 4. スタイル
 
 - [ ] 4.1 モーダルのCSS（オーバーレイ、ダイアログボックス、ボタン配置）を追加
+
+## 5. テスト
+
+- [ ] 5.1 `test/controllers/todos_controller_test.rb` に `GET /todos/:id/edit` が HTTP 200 を返すテストを追加
+- [ ] 5.2 `PATCH /todos/:id` でタイトルを更新できるテストを追加（Turbo Stream レスポンス含む）
+- [ ] 5.3 `PATCH /todos/:id` でタイトルが空の場合にエラーレスポンスを返すテストを追加
