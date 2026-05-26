@@ -9,16 +9,19 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
+      @new_todo = Todo.new
       load_todos
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to todos_path }
+        format.html { redirect_to todos_path, status: :see_other }
       end
     else
-      load_todos
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("todo_form", partial: "form", locals: { todo: @todo }), status: :unprocessable_entity }
-        format.html { render :index, status: :unprocessable_entity }
+        format.html do
+          load_todos
+          render :index, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -27,12 +30,12 @@ class TodosController < ApplicationController
     if @todo.update(todo_params)
       respond_to do |format|
         format.turbo_stream
-        format.html { redirect_to todos_path }
+        format.html { redirect_to todos_path, status: :see_other }
       end
     else
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@todo), partial: "todo", locals: { todo: @todo }), status: :unprocessable_entity }
-        format.html { redirect_to todos_path }
+        format.html { redirect_to todos_path, status: :see_other }
       end
     end
   end
@@ -41,7 +44,7 @@ class TodosController < ApplicationController
     @todo.destroy!
     respond_to do |format|
       format.turbo_stream
-      format.html { redirect_to todos_path }
+      format.html { redirect_to todos_path, status: :see_other }
     end
   end
 
