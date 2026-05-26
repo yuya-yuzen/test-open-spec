@@ -1,0 +1,13 @@
+<div class="container">
+  <h1>ToDo リスト</h1>
+
+  <%= turbo_frame_tag "todo_form" do %>
+    <%= render "form", todo: @todo %>
+  <% end %>
+
+  <%= turbo_frame_tag "todos" do %>
+    <div id="todo_list">
+      <%= render @todos %>
+    </div>
+  <% end %>
+</div>

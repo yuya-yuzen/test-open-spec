@@ -15,6 +15,7 @@ class TodosController < ApplicationController
         format.html { redirect_to todos_path }
       end
     else
+      load_todos
       respond_to do |format|
         format.turbo_stream { render turbo_stream: turbo_stream.replace("todo_form", partial: "form", locals: { todo: @todo }) }
         format.html { render :index, status: :unprocessable_entity }

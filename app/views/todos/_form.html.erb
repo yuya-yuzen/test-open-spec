@@ -1,0 +1,9 @@
+<%= form_with model: todo, id: "todo_form" do |f| %>
+  <div class="form-row">
+    <%= f.text_field :title, placeholder: "タスクを入力...", class: "todo-input" %>
+    <%= f.submit "追加", class: "todo-submit" %>
+  </div>
+  <% if todo.errors.any? %>
+    <p class="error"><%= todo.errors.full_messages.first %></p>
+  <% end %>
+<% end %>

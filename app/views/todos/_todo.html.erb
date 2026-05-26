@@ -1,0 +1,9 @@
+<%= turbo_frame_tag dom_id(todo) do %>
+  <div class="todo-item <%= todo.completed ? 'completed' : '' %>">
+    <%= form_with model: todo do |f| %>
+      <%= f.check_box :completed, onchange: "this.form.requestSubmit()", checked: todo.completed %>
+    <% end %>
+    <span class="todo-title"><%= todo.title %></span>
+    <%= button_to "削除", todo_path(todo), method: :delete, class: "delete-btn", form: { data: { turbo_confirm: "削除しますか？" } } %>
+  </div>
+<% end %>
