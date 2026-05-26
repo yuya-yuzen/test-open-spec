@@ -1,1 +1,2 @@
 <%= turbo_stream.replace dom_id(@todo), partial: "todo", locals: { todo: @todo } %>
+<%= turbo_stream.replace "modal", "" %>

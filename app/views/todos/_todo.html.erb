@@ -4,6 +4,7 @@
       <%= f.check_box :completed, onchange: "this.form.requestSubmit()", checked: todo.completed %>
     <% end %>
     <span class="todo-title"><%= todo.title %></span>
+    <%= link_to "編集", edit_todo_path(todo), class: "edit-btn", data: { turbo_frame: "modal" } %>
     <%= button_to "削除", todo_path(todo), method: :delete, class: "delete-btn", form: { data: { turbo_confirm: "削除しますか？" } } %>
   </div>
 <% end %>

@@ -1,9 +1,14 @@
 class TodosController < ApplicationController
-  before_action :set_todo, only: [ :update, :destroy ]
+  include ActionView::RecordIdentifier
+
+  before_action :set_todo, only: [ :edit, :update, :destroy ]
 
   def index
     load_todos
     @todo = Todo.new
+  end
+
+  def edit
   end
 
   def create

@@ -33,4 +33,21 @@ class TodosControllerTest < ActionDispatch::IntegrationTest
       delete todo_path(@todo)
     end
   end
+
+  test "GET /todos/:id/edit はHTTP 200を返す" do
+    get edit_todo_path(@todo)
+    assert_response :success
+  end
+
+  test "PATCH /todos/:id でタイトルを更新できる" do
+    patch todo_path(@todo), params: { todo: { title: "更新後のタスク" } }, as: :turbo_stream
+    assert_equal "更新後のタスク", @todo.reload.title
+    assert_response :success
+  end
+
+  test "PATCH /todos/:id でタイトルが空の場合はエラーレスポンスを返す" do
+    patch todo_path(@todo), params: { todo: { title: "" } }, as: :turbo_stream
+    assert_equal "テストタスク", @todo.reload.title
+    assert_response :unprocessable_entity
+  end
 end

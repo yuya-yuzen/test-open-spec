@@ -1,0 +1,19 @@
+<%= turbo_frame_tag "modal" do %>
+  <div class="modal-overlay">
+    <div class="modal-dialog">
+      <h2>タスクを編集</h2>
+      <%= form_with model: @todo do |f| %>
+        <div class="form-row">
+          <%= f.text_field :title, class: "todo-input" %>
+        </div>
+        <% if @todo.errors.any? %>
+          <p class="error"><%= @todo.errors.full_messages.first %></p>
+        <% end %>
+        <div class="modal-actions">
+          <%= f.submit "保存", class: "todo-submit" %>
+          <%= link_to "キャンセル", todos_path, class: "cancel-btn", data: { turbo_frame: "modal" } %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

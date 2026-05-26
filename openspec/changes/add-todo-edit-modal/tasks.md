@@ -1,25 +1,25 @@
 ## 1. ルーティングとコントローラー
 
-- [ ] 1.1 `config/routes.rb` の `resources :todos` に `edit` を追加
-- [ ] 1.2 `todos_controller.rb` の `before_action :set_todo` に `:edit` を追加
-- [ ] 1.3 `todos_controller.rb` に `edit` アクションを追加
+- [x] 1.1 `config/routes.rb` の `resources :todos` に `edit` を追加
+- [x] 1.2 `todos_controller.rb` の `before_action :set_todo` に `:edit` を追加
+- [x] 1.3 `todos_controller.rb` に `edit` アクションを追加
 
 ## 2. ビュー: レイアウトとモーダル基盤
 
-- [ ] 2.1 `app/views/layouts/application.html.erb` にモーダル用 `turbo_frame_tag "modal"` を追加
-- [ ] 2.2 `app/views/todos/edit.html.erb` を新規作成（モーダルHTML、タイトル入力フォーム、保存・キャンセルボタン）
+- [x] 2.1 `app/views/layouts/application.html.erb` にモーダル用 `turbo_frame_tag "modal"` を追加
+- [x] 2.2 `app/views/todos/edit.html.erb` を新規作成（モーダルHTML、タイトル入力フォーム、保存・キャンセルボタン）
 
 ## 3. ビュー: タスク一覧と更新処理
 
-- [ ] 3.1 `app/views/todos/_todo.html.erb` に「編集」ボタンを追加（`edit_todo_path` へのリンク、`data-turbo-frame="modal"`）
-- [ ] 3.2 `app/views/todos/update.turbo_stream.erb` にモーダルを空にする `turbo_stream.replace("modal", "")` を追加
+- [x] 3.1 `app/views/todos/_todo.html.erb` に「編集」ボタンを追加（`edit_todo_path` へのリンク、`data-turbo-frame="modal"`）
+- [x] 3.2 `app/views/todos/update.turbo_stream.erb` にモーダルを空にする `turbo_stream.replace("modal", "")` を追加
 
 ## 4. スタイル
 
-- [ ] 4.1 モーダルのCSS（オーバーレイ、ダイアログボックス、ボタン配置）を追加
+- [x] 4.1 モーダルのCSS（オーバーレイ、ダイアログボックス、ボタン配置）を追加
 
 ## 5. テスト
 
-- [ ] 5.1 `test/controllers/todos_controller_test.rb` に `GET /todos/:id/edit` が HTTP 200 を返すテストを追加
-- [ ] 5.2 `PATCH /todos/:id` でタイトルを更新できるテストを追加（Turbo Stream レスポンス含む）
-- [ ] 5.3 `PATCH /todos/:id` でタイトルが空の場合にエラーレスポンスを返すテストを追加
+- [x] 5.1 `test/controllers/todos_controller_test.rb` に `GET /todos/:id/edit` が HTTP 200 を返すテストを追加
+- [x] 5.2 `PATCH /todos/:id` でタイトルを更新できるテストを追加（Turbo Stream レスポンス含む）
+- [x] 5.3 `PATCH /todos/:id` でタイトルが空の場合にエラーレスポンスを返すテストを追加
