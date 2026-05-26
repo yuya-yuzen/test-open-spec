@@ -1,13 +1,15 @@
 class TodosController < ApplicationController
+  before_action :set_todo, only: [ :update, :destroy ]
+
   def index
-    @todos = Todo.order(created_at: :desc)
+    load_todos
     @todo = Todo.new
   end
 
   def create
     @todo = Todo.new(todo_params)
     if @todo.save
-      @todos = Todo.order(created_at: :desc)
+      load_todos
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to todos_path }
@@ -21,8 +23,7 @@ class TodosController < ApplicationController
   end
 
   def update
-    @todo = Todo.find(params[:id])
-    @todo.update!(todo_params)
+    @todo.update(todo_params)
     respond_to do |format|
       format.turbo_stream
       format.html { redirect_to todos_path }
@@ -30,7 +31,6 @@ class TodosController < ApplicationController
   end
 
   def destroy
-    @todo = Todo.find(params[:id])
     @todo.destroy!
     respond_to do |format|
       format.turbo_stream
@@ -39,6 +39,14 @@ class TodosController < ApplicationController
   end
 
   private
+
+  def set_todo
+    @todo = Todo.find(params[:id])
+  end
+
+  def load_todos
+    @todos = Todo.order(created_at: :desc)
+  end
 
   def todo_params
     params.require(:todo).permit(:title, :completed)
