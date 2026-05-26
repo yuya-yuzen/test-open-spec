@@ -23,10 +23,16 @@ class TodosController < ApplicationController
   end
 
   def update
-    @todo.update(todo_params)
-    respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to todos_path }
+    if @todo.update(todo_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to todos_path }
+      end
+    else
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(dom_id(@todo), partial: "todo", locals: { todo: @todo }) }
+        format.html { redirect_to todos_path }
+      end
     end
   end
 
